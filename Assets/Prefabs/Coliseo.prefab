@@ -135,7 +135,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: f56a679032a90cd41a89bb67b3269fa3, type: 3}
+  - {fileID: 2100000, guid: e58acc14b326c98469ed80605815854d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -166,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8800807024877494928}
   m_Layer: 0
-  m_Name: Coliseo 1
+  m_Name: Coliseo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
