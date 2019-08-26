@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Game2_GoToWaypoints : MonoBehaviour
 {
+    public GameObject nextCar;
+    public bool move = false;
     public float rotationSpeed = 150f;
     public float movementSpeed = 10f;
     public int currentWaypoint;
     public List<GameObject> waypoints;
-    internal bool move = false;
+
+
+    public UnityEvent myEvent;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +32,13 @@ public class Game2_GoToWaypoints : MonoBehaviour
     public void StartMoving()
     {
         move = true;
+        GetComponent<Animator>().StopPlayback();
+    }
+
+    public void StopMoving()
+    {
+        move = false;
+        GetComponent<Animator>().StartPlayback();
     }
 
     public void GoToWaypoint()
@@ -36,11 +48,26 @@ public class Game2_GoToWaypoints : MonoBehaviour
         transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
         if (Vector3.Distance(waypoints[currentWaypoint].transform.position, transform.position) < 1f)
         {
-            currentWaypoint++;
+            if (!waypoints[currentWaypoint].GetComponent<Waypoint>().stopMoving)
+            {
+                currentWaypoint++;
+            }
+            else
+            {
+                currentWaypoint++;
+                myEvent.Invoke();
+            }
+
             if (currentWaypoint == waypoints.Count)
             {
                 currentWaypoint = 0;
             }
         }
+    }
+    
+    public void ChangeCar()
+    {   
+            nextCar.gameObject.SetActive(true);
+            this.gameObject.SetActive(false);
     }
 }
