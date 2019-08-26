@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Moving : MonoBehaviour
 {
-    public List<PlaceToMove> placeToMove;
+//    public List<PlaceToMove> placeToMove;
+    public List<GameObject> camerasToMove;
     int nextPosition = 0;
     
     public void CallStartMoving()
@@ -13,12 +14,13 @@ public class Moving : MonoBehaviour
     }
     public void ChangePosition()
     {
-        Debug.Log("Entre");
-        if(placeToMove[nextPosition] != null)
+        if(camerasToMove[nextPosition] != null)
         {
-            gameObject.transform.position.Set(placeToMove[nextPosition].position.x, placeToMove[nextPosition].position.y, placeToMove[nextPosition].position.z);
-            transform.rotation.Set(placeToMove[nextPosition].rotation.x, placeToMove[nextPosition].rotation.y, placeToMove[nextPosition].rotation.z, placeToMove[nextPosition].rotation.w);
-//            gameObject.transform.rotation = placeToMove[nextPosition].rotation;
+            //            this.gameObject.transform.position.Set(placeToMove[nextPosition].position.x, placeToMove[nextPosition].position.y, placeToMove[nextPosition].position.z);
+            //            this.transform.rotation.Set(placeToMove[nextPosition].rotation.x, placeToMove[nextPosition].rotation.y, placeToMove[nextPosition].rotation.z, placeToMove[nextPosition].rotation.w);
+            //            gameObject.transform.rotation = placeToMove[nextPosition].rotation;
+            camerasToMove[nextPosition].gameObject.SetActive(true);
+            this.gameObject.SetActive(false);
             nextPosition++;
         }
         else
