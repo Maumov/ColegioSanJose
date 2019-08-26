@@ -64,7 +64,25 @@ public class Game2_GoToWaypoints : MonoBehaviour
             }
         }
     }
-    
+
+    public void StartLeaveStudent()
+    {
+        StartCoroutine("LeaveStudent");
+    }
+
+    public GameObject student;
+    public float timeToLeaveStudent, timeToLeaveCar;
+
+    public IEnumerator LeaveStudent()
+    {
+        yield return new WaitForSeconds(timeToLeaveStudent);
+        student.SetActive(true);
+
+        yield return new WaitForSeconds(timeToLeaveCar);
+        FindObjectOfType<Moving>().ChangePosition();
+        yield return null;
+    }
+
     public void ChangeCar()
     {   
             nextCar.gameObject.SetActive(true);
