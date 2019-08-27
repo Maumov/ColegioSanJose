@@ -11,13 +11,12 @@ public class Moving : MonoBehaviour
     {
         FindObjectOfType<Game2_GoToWaypoints>().StartMoving();
     }
+
     public void ChangePosition()
     {
+        Debug.Log("Cambie");
         if(camerasToMove != null)
         {
-            //            this.gameObject.transform.position.Set(placeToMove[nextPosition].position.x, placeToMove[nextPosition].position.y, placeToMove[nextPosition].position.z);
-            //            this.transform.rotation.Set(placeToMove[nextPosition].rotation.x, placeToMove[nextPosition].rotation.y, placeToMove[nextPosition].rotation.z, placeToMove[nextPosition].rotation.w);
-            //            gameObject.transform.rotation = placeToMove[nextPosition].rotation;
             camerasToMove.gameObject.SetActive(true);
             this.gameObject.SetActive(false);
         }
@@ -31,6 +30,10 @@ public class Moving : MonoBehaviour
     {
         FindObjectOfType<Game2_GoToWaypoints>().ChangeCar();
     }
-    
+
+    public void CallChangeText()
+    {
+        FindObjectOfType<ChangeText>().NextText();
+    }
 }
 

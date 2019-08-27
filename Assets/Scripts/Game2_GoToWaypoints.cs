@@ -54,6 +54,15 @@ public class Game2_GoToWaypoints : MonoBehaviour
             }
             else
             {
+                if (waypoints[currentWaypoint].GetComponent<Waypoint>().leaveStudent)
+                {
+                    StartLeaveStudent();
+                }
+                if (waypoints[currentWaypoint].GetComponent<Waypoint>().isDoor)
+                {
+                    FindObjectOfType<ImportantMessage>().ShowMessage();
+                    StartMoveAgain();
+                }
                 currentWaypoint++;
                 myEvent.Invoke();
             }
@@ -70,8 +79,24 @@ public class Game2_GoToWaypoints : MonoBehaviour
         StartCoroutine("LeaveStudent");
     }
 
+    public void StartMoveAgain()
+    {
+        StartCoroutine("MoveAgain");
+    }
+
     public GameObject student;
     public float timeToLeaveStudent, timeToLeaveCar;
+
+    public IEnumerator MoveAgain()
+    {
+        Debug.Log("Move");
+        yield return new WaitForSeconds(timeToLeaveCar);
+
+        move = true;
+        FindObjectOfType<Moving>().ChangePosition();
+
+        yield return null;
+    }
 
     public IEnumerator LeaveStudent()
     {
