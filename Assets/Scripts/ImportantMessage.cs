@@ -6,10 +6,12 @@ public class ImportantMessage : MonoBehaviour
 {
     public GameObject entrada;
     public GameObject salida;
+    public GameObject ticket;
 
     public void ShowMessage()
     {
         entrada.SetActive(true);
         salida.SetActive(true);
+        ticket.SetActive(true);
     }
 }
